@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        dialog.show();
     }
 
     public void showAlertDialogList() {
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < slist.size(); i++) {
                     msg = msg + "\n " + (i + 1) + ": " + colors[slist.get(i)];
                 }
-                Toast.makeText(getApplicationContext(), "Items Seleccionados" + " " + msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Items Seleccionados" + "\n " + msg, Toast.LENGTH_SHORT).show();
             }
         }).setNegativeButton("no", new DialogInterface.OnClickListener() {
             @Override
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Nada", Toast.LENGTH_SHORT).show();
             }
         });
+        dialog.show();
 
 
     }
@@ -176,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         CharSequence titubar = "Barra de notificacion";
         CharSequence txto = "Ejemplo de Lanzamiento de Notificacion Android";
 
-        String txtnotifica = "Saludos desde " + getResources().getString(R.string.app_name);
+        String txtnotifica = "Saludos desde \n" + getResources().getString(R.string.app_name);
         Intent i = new Intent(getApplicationContext(), secondActivity.class);
         i.putExtra(NOTIFICACION, txtnotifica);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -198,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
     public void showNotificationInbox() {
 
     }
-
 
     public void showNotificationPicture() {
     }
