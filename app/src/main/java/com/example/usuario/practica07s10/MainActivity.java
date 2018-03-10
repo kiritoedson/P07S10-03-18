@@ -1,6 +1,9 @@
 package com.example.usuario.practica07s10;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showAlertDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
         dialog.setTitle("Ejemplo de Alert Dialog");
         dialog.setMessage("¿Deseas Salir?");
         dialog.setIcon(android.R.drawable.ic_dialog_alert);
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showAlertDialogList() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
         dialog.setTitle("Elegir Colores").setMultiChoiceItems(colors, icount, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -153,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 msg = "";
                 for (int i = 0; i < slist.size(); i++) {
-                    msg = msg + " " + (i + 1) + ": " + colors[slist.get(i)];
+                    msg = msg + "\n " + (i + 1) + ": " + colors[slist.get(i)];
                 }
                 Toast.makeText(getApplicationContext(), "Items Seleccionados" + " " + msg, Toast.LENGTH_SHORT).show();
             }
@@ -168,7 +171,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showNotification() {
+        int icon = R.drawable.ic_notification;
+        CharSequence titulo = "Notificacion de Practica";
+        CharSequence titubar = "Barra de notificacion";
+        CharSequence txto = "Ejemplo de Lanzamiento de Notificacion Android";
 
+        String txtnotifica = "Saludos desde " + getResources().getString(R.string.app_name);
+        Intent i = new Intent(getApplicationContext(), secondActivity.class);
+        i.putExtra(NOTIFICACION, txtnotifica);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent p1 = PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
+        Notification notification = new Notification.Builder(getApplicationContext()).setTicker(titulo).setContentTitle(titubar).setContentText(txto)
+                .setSmallIcon(icon).setAutoCancel(true).setContentIntent(p1).build();
+        notification.defaults |= Notification.DEFAULT_SOUND;
+        notification.defaults |= Notification.DEFAULT_VIBRATE;
+        notification.defaults |= Notification.DEFAULT_LIGHTS;
+
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(0, notification);
     }
 
     public void showNotificationBigText() {
