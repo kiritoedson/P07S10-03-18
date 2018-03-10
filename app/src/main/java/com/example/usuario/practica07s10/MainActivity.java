@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -76,10 +77,19 @@ public class MainActivity extends AppCompatActivity {
                     case 1://Toast Personalizado
                         LayoutInflater inflater = getLayoutInflater();
                         View layaout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_Llayout));
+
+                        TextView tv=new TextView(getApplicationContext());
+                        tv.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        tv.setTextColor(Color.WHITE);
+                        tv.setTextSize(30);
+                        tv.setPadding(10,10,10,10);
+                        tv.setText("Ejemplo de toast");
+
                         Toast toast = new Toast(getApplicationContext());
                         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                         toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layaout);
+                        //toast.setView(layaout);
+                        toast.setView(tv);
                         toast.show();
                         break;
                     case 2://Snackbar
