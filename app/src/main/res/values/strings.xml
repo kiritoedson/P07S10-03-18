@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Practica07S10</string>
     <string name="action_settings">Settings</string>
+    <string-array name="imagenes">
+        <item>Gears1</item>
+        <item>Gears2</item>
+        <item>Gears3</item>
+        <item>Gears4</item>
+        <item>McFly</item>
+    </string-array>
 </resources>

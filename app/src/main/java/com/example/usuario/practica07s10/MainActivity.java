@@ -334,6 +334,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showSpinner() {
+        Intent i = new Intent(MainActivity.this, ImageActivity.class);
+        startActivity(i);
     }
 
 
